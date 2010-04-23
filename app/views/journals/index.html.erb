@@ -1,0 +1,9 @@
+<% page_title("Journals", @bibliome.query)%>
+<h2>Journals</h2>
+<%= page_entries_info @journals %>
+<ol>
+<% @journals.each do |j| -%>
+  <li><%= link_to(j.journal.abbr, bibliome_journal_path(@bibliome, j.journal, :period => @link_period)) %> <%= count(j.articles_count) %> <%= sparkline(@bibliome, j.journal)%></td>
+<% end -%>
+</ol>
+<%= will_paginate @journals %>

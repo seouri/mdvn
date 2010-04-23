@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bibliome_id: 1
+  journal_id: 1
+  gene_id: 1
+  year: MyString
+  total: 1
+
+two:
+  bibliome_id: 1
+  journal_id: 1
+  gene_id: 1
+  year: MyString
+  total: 1

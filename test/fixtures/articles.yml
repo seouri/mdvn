@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  journal_id: 1
+  pubdate: 2010-04-22
+  title: MyText
+  affiliation: MyText
+  source: MyString
+  bibliomes_count: 1
+
+two:
+  journal_id: 1
+  pubdate: 2010-04-22
+  title: MyText
+  affiliation: MyText
+  source: MyString
+  bibliomes_count: 1

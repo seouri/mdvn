@@ -1,0 +1,188 @@
+/*
+  red: #913
+  yellow: #ea1
+*/
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a, a:visited {
+  color: #913;
+}
+a:hover {
+  color: #ea1;
+}
+li {
+  margin-bottom: 0.25em;
+}
+#hd {
+  margin: 0 -0.8em 0 -0.8em;
+  padding: 0.1em 0.8em 0.25em 0.8em;
+  background-color: #ccc;
+}
+#toolbar {
+  display: inline;
+  margin: 0 0.25em;
+}
+#toolbar li {
+  width: 10em;
+  list-style: none;
+  display: inline;
+  padding: 0.25em;
+  font-weight: bold;
+  color: #913;
+}
+#toolbar a, #toolbar a:visited {
+  color: #000;
+  text-decoration: none;
+}
+#toolbar a:hover {
+  color: #913;
+  text-decoration: underline;
+}
+#bd {
+  min-height: 20em;
+  padding: 0;
+}
+
+#bd h1 {
+  margin: 0 -0.6em 0.5em -0.6em;
+  padding: 0.1em 0.6em;
+  background-color: #333;
+  color: #ccc;
+  display: block;
+}
+
+#bd h1 a, #bd h1 a:visited {
+  color: #ccc;
+  text-decoration: none;
+}
+
+#bd h1 a:hover {
+  color: #ea1;
+}
+#results_info {
+  margin: 1em 0;
+  padding: 0.25em;
+  background-color: #eee;
+}
+#sample_search {
+  margin-top: 1em;
+  font-size: 77%;
+}
+#pubmed_search_q {
+  width: 23em;
+}
+#pubmed_search_submit, #build_bibliome_submit {
+}
+ol#results li {
+  margin: 0.5em 0;
+}
+
+#bibliome_status {
+  padding: 1em;
+  border: 2px solid #913;
+  color: #913;
+  font-weight: bold;
+}
+
+.age, .count {
+  font-size: 85%;
+  color: #666;
+  white-space: nowrap;
+}
+
+.citation {
+  margin-bottom: 1em;
+}
+.citation .title {
+  font-size: 108%;
+  font-weight: bold;
+}
+.citation .source, .citation .subjects {
+  font-size: 85%;
+}
+
+.top_neighbors {
+  width: 19em;
+  min-height: 19em;
+  float: left;
+}
+
+#period_tab {
+  display: inline;
+  margin: 0;
+}
+#period_tab li {
+  list-style: none;
+  display: inline;
+  color: #fff;
+  font-size: 85%;
+  white-space: nowrap;
+}
+#period_tab li.current {
+  background-color: #000;
+  cursor: default;
+}
+#period_tab a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+}
+#bibliome_nav {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+#bibliome_nav li {
+  margin: 0;
+  padding: 0 0.25em;
+  list-style: none;
+  font-size: 85%;
+  font-weight: normal;
+  display: inline;
+}
+#bibliome_nav li.current a {
+  font-weight: bold;
+  color: #fff;
+}
+#bibliome_nav li.current a:hover {
+  color: #ea1;
+}
+#see_also {
+  margin: -1em 0 1em 0;
+  font-size: 85%;
+}
+#see_also ul {
+  margin: 0;
+  display: inline;
+}
+#see_also li {
+  margin: 0 0.25em;
+  list-style: none;
+  display: inline;
+}
+
+.button, .button:visited {
+	background: #444 url(/images/button-overlay.png) repeat-x; 
+	display: inline-block; 
+	padding: 5px 7px; 
+	color: #fff; 
+	text-decoration: none;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+}
+.button:hover { background-color: #222; }
+.button:active { top: 1px; }
+.button, .button:visited {
+  font-weight: bold; 
+  line-height: 1; 
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+}

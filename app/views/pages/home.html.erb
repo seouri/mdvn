@@ -1,0 +1,34 @@
+<% page_title("Biomedical Research at a Glance") -%>
+
+<h2>Build Your Own Bibliome</h2>
+
+<%= form_tag new_bibliome_path, :method => "get", :id => "pubmed_search" do %>
+  <%= text_field_tag('q', @q, :id => "pubmed_search_q") %>
+  <%= hidden_field_tag('count', @count, :name => nil) %>
+  <%= submit_tag "Search PubMed", :name => nil, :disable_with => "Searching PubMed ...", :id => "pubmed_search_submit" %>
+  <div id="sample_search">
+    Try these queries: 
+    <%= link_to("Rett Syndrome", new_bibliome_path(:q => "Rett Syndrome"))%>
+    <%= link_to("plos med[jour]", new_bibliome_path(:q => "plos med[jour]"))%>
+  </div><!-- #sample_search -->
+<% end %>
+
+<% if !@recent.blank? %>
+<h2>Recent Bibliomes</h2>
+<ul>
+  <% for item in @recent %>
+  <li><%= link_to(h(item.query), bibliome_path(item))%> <span class="age">(<%= number_with_delimiter(item.total_articles) %> articles, <%= age(item) %>)</span></li>
+  <% end %>
+</ul>
+<%= link_to("See more recent bibliomes", recent_bibliomes_path) if (Bibliome.count > 5) %>
+<% end %>
+
+<% if !@popular.blank? %>
+<h2>Popular Bibliomes</h2>
+<ul>
+  <% for item in @popular %>
+  <li><%= link_to(h(item.query), bibliome_path(item))%> <span class="age">(<%= number_with_delimiter(item.total_articles) %> articles, <%= age(item) %>)</span></li>
+  <% end %>
+</ul>
+<%= link_to("See more popular bibliomes", popular_bibliomes_path) if (Bibliome.count > 5) %>
+<% end %>

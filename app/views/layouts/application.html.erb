@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= yield(:title) || controller.controller_name.titleize %> | Medvane </title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="viewport" content="width=device-width">
+<link rel="apple-touch-icon" href="/images/icon-57x57.png"/>
+<%= csrf_meta_tag %>
+<% if Rails.env == "production" %>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css&2.8.0r4/build/base/base-min.css"/>
+<% else -%>
+<%= stylesheet_link_tag "yui-rfgb" %>
+<% end -%>
+<%= stylesheet_link_tag "screen" %>
+<% if Rails.env == "production" %>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '<%= ENV['GOOGLE_ANALYTICS_UA']%>']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
+</script>
+<% end -%>
+</head>
+<body>
+<div id="doc3" class="yui-t7">
+<div id="hd" role="banner">
+  <%= link_to(image_tag("medvane-137x30.png"), root_path) %>
+  <ul id="toolbar">
+    <li><%= link_to_unless_current("Home", root_path) %></li>
+    <li><%= link_to_unless_current("About Us", about_path) %></li>
+    <li><%= link_to_unless_current("Help", help_path) %></li>
+  </ul><!-- #toolbar -->
+</div><!-- #hd -->
+<div id="bd" role="main">
+<div class="yui-g">
+<%= page_header(@bibliome) %>
+<%= period_tab(@period) if @bibliome and @bibliome.built? %>
+<%= yield %>
+</div><!-- .yui-g -->
+</div><!-- #bd -->
+<div id="ft" role="contentinfo">
+</div><!-- #ft -->
+</div><!-- #doc4 .yui-t7 -->
+</body>
+</html>

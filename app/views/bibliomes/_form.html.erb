@@ -1,0 +1,24 @@
+<%= form_for(@bibliome) do |f| %>
+  <% if @bibliome.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@bibliome.errors.count, "error") %> prohibited this bibliome from being saved:</h2>
+    <ul>
+    <% @bibliome.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :query %><br />
+    <%= f.text_area :query %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
