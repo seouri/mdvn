@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100423043532) do
+ActiveRecord::Schema.define(:version => 20100424085756) do
 
   create_table "article_types", :force => true do |t|
     t.integer "article_id"
@@ -34,69 +34,89 @@ ActiveRecord::Schema.define(:version => 20100423043532) do
     t.integer "bibliome_id"
     t.integer "author_id"
     t.integer "gene_id"
-    t.string  "year"
-    t.integer "first",       :default => 0
-    t.integer "last",        :default => 0
-    t.integer "middle",      :default => 0
-    t.integer "total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "author_genes", ["bibliome_id", "author_id", "year", "gene_id"], :name => "index_author_genes_on_bibliome_id_author_id_year_gene_id"
-  add_index "author_genes", ["bibliome_id", "author_id", "year", "total"], :name => "index_author_genes_on_bibliome_id_author_id_year_total"
-  add_index "author_genes", ["bibliome_id", "gene_id", "year", "total"], :name => "index_author_genes_on_bibliome_id_gene_id_year_total"
+  add_index "author_genes", ["bibliome_id", "author_id", "all_articles_count"], :name => "index_author_genes_on_bibliome_author_all_articles_count"
+  add_index "author_genes", ["bibliome_id", "author_id", "five_articles_count"], :name => "index_author_genes_on_bibliome_author_five_articles_count"
+  add_index "author_genes", ["bibliome_id", "author_id", "one_articles_count"], :name => "index_author_genes_on_bibliome_author_one_articles_count"
+  add_index "author_genes", ["bibliome_id", "author_id", "ten_articles_count"], :name => "index_author_genes_on_bibliome_author_ten_articles_count"
+  add_index "author_genes", ["bibliome_id", "gene_id", "all_articles_count"], :name => "index_author_genes_on_bibliome_gene_all_articles_count"
+  add_index "author_genes", ["bibliome_id", "gene_id", "five_articles_count"], :name => "index_author_genes_on_bibliome_gene_five_articles_count"
+  add_index "author_genes", ["bibliome_id", "gene_id", "one_articles_count"], :name => "index_author_genes_on_bibliome_gene_one_articles_count"
+  add_index "author_genes", ["bibliome_id", "gene_id", "ten_articles_count"], :name => "index_author_genes_on_bibliome_gene_ten_articles_count"
 
   create_table "author_journals", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "author_id"
     t.integer "journal_id"
-    t.string  "year"
-    t.integer "first",       :default => 0
-    t.integer "last",        :default => 0
-    t.integer "middle",      :default => 0
-    t.integer "total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "author_journals", ["bibliome_id", "author_id", "year", "journal_id"], :name => "index_author_journals_on_bibliome_id_author_id_year_journal_id"
-  add_index "author_journals", ["bibliome_id", "author_id", "year", "total"], :name => "index_author_journals_on_bibliome_id_author_id_year_total"
-  add_index "author_journals", ["bibliome_id", "journal_id", "year", "total"], :name => "index_author_journals_on_bibliome_id_journal_id_year_total"
+  add_index "author_journals", ["bibliome_id", "author_id", "all_articles_count"], :name => "index_author_journals_on_bibliome_author_all_articles_count"
+  add_index "author_journals", ["bibliome_id", "author_id", "five_articles_count"], :name => "index_author_journals_on_bibliome_author_five_articles_count"
+  add_index "author_journals", ["bibliome_id", "author_id", "one_articles_count"], :name => "index_author_journals_on_bibliome_author_one_articles_count"
+  add_index "author_journals", ["bibliome_id", "author_id", "ten_articles_count"], :name => "index_author_journals_on_bibliome_author_ten_articles_count"
+  add_index "author_journals", ["bibliome_id", "journal_id", "all_articles_count"], :name => "index_author_journals_on_bibliome_journal_all_articles_count"
+  add_index "author_journals", ["bibliome_id", "journal_id", "five_articles_count"], :name => "index_author_journals_on_bibliome_journal_five_articles_count"
+  add_index "author_journals", ["bibliome_id", "journal_id", "one_articles_count"], :name => "index_author_journals_on_bibliome_journal_one_articles_count"
+  add_index "author_journals", ["bibliome_id", "journal_id", "ten_articles_count"], :name => "index_author_journals_on_bibliome_journal_ten_articles_count"
 
   create_table "author_pubtypes", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "author_id"
     t.integer "pubtype_id"
-    t.string  "year"
-    t.integer "first",       :default => 0
-    t.integer "last",        :default => 0
-    t.integer "middle",      :default => 0
-    t.integer "total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "author_pubtypes", ["bibliome_id", "author_id", "year", "pubtype_id"], :name => "index_author_pubtypes_on_bibliome_id_author_id_year_pubtype_id"
-  add_index "author_pubtypes", ["bibliome_id", "author_id", "year", "total"], :name => "index_author_pubtypes_on_bibliome_id_author_id_year_total"
-  add_index "author_pubtypes", ["bibliome_id", "pubtype_id", "year", "total"], :name => "index_author_pubtypes_on_bibliome_id_pubtype_id_year_total"
+  add_index "author_pubtypes", ["bibliome_id", "author_id", "all_articles_count"], :name => "index_author_pubtypes_on_bibliome_author_all_articles_count"
+  add_index "author_pubtypes", ["bibliome_id", "author_id", "five_articles_count"], :name => "index_author_pubtypes_on_bibliome_author_five_articles_count"
+  add_index "author_pubtypes", ["bibliome_id", "author_id", "one_articles_count"], :name => "index_author_pubtypes_on_bibliome_author_one_articles_count"
+  add_index "author_pubtypes", ["bibliome_id", "author_id", "ten_articles_count"], :name => "index_author_pubtypes_on_bibliome_author_ten_articles_count"
+  add_index "author_pubtypes", ["bibliome_id", "pubtype_id", "all_articles_count"], :name => "index_author_pubtypes_on_bibliome_pubtype_all_articles_count"
+  add_index "author_pubtypes", ["bibliome_id", "pubtype_id", "five_articles_count"], :name => "index_author_pubtypes_on_bibliome_pubtype_five_articles_count"
+  add_index "author_pubtypes", ["bibliome_id", "pubtype_id", "one_articles_count"], :name => "index_author_pubtypes_on_bibliome_pubtype_one_articles_count"
+  add_index "author_pubtypes", ["bibliome_id", "pubtype_id", "ten_articles_count"], :name => "index_author_pubtypes_on_bibliome_pubtype_ten_articles_count"
 
   create_table "author_subjects", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "author_id"
     t.integer "subject_id"
-    t.string  "year"
-    t.integer "first_direct",      :default => 0
-    t.integer "first_descendant",  :default => 0
-    t.integer "first_total",       :default => 0
-    t.integer "last_direct",       :default => 0
-    t.integer "last_descendant",   :default => 0
-    t.integer "last_total",        :default => 0
-    t.integer "middle_direct",     :default => 0
-    t.integer "middle_descendant", :default => 0
-    t.integer "middle_total",      :default => 0
-    t.integer "total_direct",      :default => 0
-    t.integer "total_descendant",  :default => 0
-    t.integer "total_total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "author_subjects", ["bibliome_id", "author_id", "year", "subject_id"], :name => "index_author_subjects_on_bibliome_id_author_id_year_subject_id"
-  add_index "author_subjects", ["bibliome_id", "author_id", "year", "total_direct"], :name => "index_author_subjects_on_bibliome_author_year_total_direct"
-  add_index "author_subjects", ["bibliome_id", "subject_id", "year", "total_direct"], :name => "index_author_subjects_on_bibliome_subject_year_total_direct"
+  add_index "author_subjects", ["bibliome_id", "author_id", "all_articles_count"], :name => "index_author_subjects_on_bibliome_author_all_articles_count"
+  add_index "author_subjects", ["bibliome_id", "author_id", "five_articles_count"], :name => "index_author_subjects_on_bibliome_author_five_articles_count"
+  add_index "author_subjects", ["bibliome_id", "author_id", "one_articles_count"], :name => "index_author_subjects_on_bibliome_author_one_articles_count"
+  add_index "author_subjects", ["bibliome_id", "author_id", "ten_articles_count"], :name => "index_author_subjects_on_bibliome_author_ten_articles_count"
+  add_index "author_subjects", ["bibliome_id", "subject_id", "all_articles_count"], :name => "index_author_subjects_on_bibliome_subject_all_articles_count"
+  add_index "author_subjects", ["bibliome_id", "subject_id", "five_articles_count"], :name => "index_author_subjects_on_bibliome_subject_five_articles_count"
+  add_index "author_subjects", ["bibliome_id", "subject_id", "one_articles_count"], :name => "index_author_subjects_on_bibliome_subject_one_articles_count"
+  add_index "author_subjects", ["bibliome_id", "subject_id", "ten_articles_count"], :name => "index_author_subjects_on_bibliome_subject_ten_articles_count"
 
   create_table "authors", :force => true do |t|
     t.string "last_name"
@@ -129,52 +149,112 @@ ActiveRecord::Schema.define(:version => 20100423043532) do
   create_table "bibliome_authors", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "author_id"
-    t.string  "year"
-    t.integer "articles_count", :default => 0
+    t.integer "all_articles_count",         :limit => 3, :default => 0
+    t.integer "one_articles_count",         :limit => 3, :default => 0
+    t.integer "five_articles_count",        :limit => 3, :default => 0
+    t.integer "ten_articles_count",         :limit => 3, :default => 0
+    t.integer "all_first_articles_count",   :limit => 3, :default => 0
+    t.integer "one_first_articles_count",   :limit => 3, :default => 0
+    t.integer "five_first_articles_count",  :limit => 3, :default => 0
+    t.integer "ten_first_articles_count",   :limit => 3, :default => 0
+    t.integer "all_last_articles_count",    :limit => 3, :default => 0
+    t.integer "one_last_articles_count",    :limit => 3, :default => 0
+    t.integer "five_last_articles_count",   :limit => 3, :default => 0
+    t.integer "ten_last_articles_count",    :limit => 3, :default => 0
+    t.integer "all_middle_articles_count",  :limit => 3, :default => 0
+    t.integer "one_middle_articles_count",  :limit => 3, :default => 0
+    t.integer "five_middle_articles_count", :limit => 3, :default => 0
+    t.integer "ten_middle_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",                 :limit => 2, :default => 0
+    t.integer "end_year",                   :limit => 2, :default => 0
+    t.text    "articles_counts"
+    t.text    "first_articles_counts"
+    t.text    "last_articles_counts"
+    t.text    "middle_articles_counts"
   end
 
-  add_index "bibliome_authors", ["bibliome_id", "author_id", "year"], :name => "index_bibliome_authors_on_bibliome_id_and_author_id_and_year"
-  add_index "bibliome_authors", ["bibliome_id", "year", "articles_count"], :name => "index_bibliome_authors_on_bibliome_id_year_articles_count"
+  add_index "bibliome_authors", ["bibliome_id", "author_id", "all_articles_count"], :name => "index_bibliome_authors_on_bibliome_author_articles_count"
+  add_index "bibliome_authors", ["bibliome_id", "author_id", "five_articles_count"], :name => "index_bibliome_authors_on_bibliome_author_five_articles_count"
+  add_index "bibliome_authors", ["bibliome_id", "author_id", "one_articles_count"], :name => "index_bibliome_authors_on_bibliome_author_one_articles_count"
+  add_index "bibliome_authors", ["bibliome_id", "author_id", "ten_articles_count"], :name => "index_bibliome_authors_on_bibliome_author_ten_articles_count"
 
   create_table "bibliome_genes", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "gene_id"
-    t.string  "year"
-    t.integer "articles_count", :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "bibliome_genes", ["bibliome_id", "gene_id", "year"], :name => "index_bibliome_genes_on_bibliome_id_and_gene_id_and_year"
-  add_index "bibliome_genes", ["bibliome_id", "year", "articles_count"], :name => "index_bibliome_genes_on_bibliome_id_and_year_and_articles_count"
+  add_index "bibliome_genes", ["bibliome_id", "gene_id", "all_articles_count"], :name => "index_bibliome_genes_on_bibliome_gene_all_articles_count"
+  add_index "bibliome_genes", ["bibliome_id", "gene_id", "five_articles_count"], :name => "index_bibliome_genes_on_bibliome_gene_five_articles_count"
+  add_index "bibliome_genes", ["bibliome_id", "gene_id", "one_articles_count"], :name => "index_bibliome_genes_on_bibliome_gene_one_articles_count"
+  add_index "bibliome_genes", ["bibliome_id", "gene_id", "ten_articles_count"], :name => "index_bibliome_genes_on_bibliome_gene_ten_articles_count"
 
   create_table "bibliome_journals", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "journal_id"
-    t.string  "year"
-    t.integer "articles_count", :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "bibliome_journals", ["bibliome_id", "journal_id", "year"], :name => "index_bibliome_journals_on_bibliome_id_and_journal_id_and_year"
-  add_index "bibliome_journals", ["bibliome_id", "year", "articles_count"], :name => "index_bibliome_journals_on_bibliome_id_year_articles_count"
+  add_index "bibliome_journals", ["bibliome_id", "journal_id", "all_articles_count"], :name => "index_bibliome_journals_on_bibliome_journal_all_articles_count"
+  add_index "bibliome_journals", ["bibliome_id", "journal_id", "five_articles_count"], :name => "index_bibliome_journals_on_bibliome_journal_five_articles_count"
+  add_index "bibliome_journals", ["bibliome_id", "journal_id", "one_articles_count"], :name => "index_bibliome_journals_on_bibliome_journal_one_articles_count"
+  add_index "bibliome_journals", ["bibliome_id", "journal_id", "ten_articles_count"], :name => "index_bibliome_journals_on_bibliome_journal_ten_articles_count"
 
   create_table "bibliome_pubtypes", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "pubtype_id"
-    t.string  "year"
-    t.integer "articles_count", :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "bibliome_pubtypes", ["bibliome_id", "pubtype_id", "year"], :name => "index_bibliome_pubtypes_on_bibliome_id_and_pubtype_id_and_year"
-  add_index "bibliome_pubtypes", ["bibliome_id", "year", "articles_count"], :name => "index_bibliome_pubtypes_on_bibliome_id_year_articles_count"
+  add_index "bibliome_pubtypes", ["bibliome_id", "pubtype_id", "all_articles_count"], :name => "index_bibliome_pubtypes_on_bibliome_pubtype_all_articles_count"
+  add_index "bibliome_pubtypes", ["bibliome_id", "pubtype_id", "five_articles_count"], :name => "index_bibliome_pubtypes_on_bibliome_pubtype_five_articles_count"
+  add_index "bibliome_pubtypes", ["bibliome_id", "pubtype_id", "one_articles_count"], :name => "index_bibliome_pubtypes_on_bibliome_pubtype_one_articles_count"
+  add_index "bibliome_pubtypes", ["bibliome_id", "pubtype_id", "ten_articles_count"], :name => "index_bibliome_pubtypes_on_bibliome_pubtype_ten_articles_count"
 
   create_table "bibliome_subjects", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "subject_id"
-    t.string  "year"
-    t.integer "articles_count", :default => 0
+    t.integer "all_articles_count",             :limit => 3, :default => 0
+    t.integer "one_articles_count",             :limit => 3, :default => 0
+    t.integer "five_articles_count",            :limit => 3, :default => 0
+    t.integer "ten_articles_count",             :limit => 3, :default => 0
+    t.integer "all_direct_articles_count",      :limit => 3, :default => 0
+    t.integer "one_direct_articles_count",      :limit => 3, :default => 0
+    t.integer "five_direct_articles_count",     :limit => 3, :default => 0
+    t.integer "ten_direct_articles_count",      :limit => 3, :default => 0
+    t.integer "all_descendant_articles_count",  :limit => 3, :default => 0
+    t.integer "one_descendant_articles_count",  :limit => 3, :default => 0
+    t.integer "five_descendant_articles_count", :limit => 3, :default => 0
+    t.integer "ten_descendant_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",                     :limit => 2, :default => 0
+    t.integer "end_year",                       :limit => 2, :default => 0
+    t.text    "articles_counts"
+    t.text    "direct_articles_counts"
+    t.text    "descendant_articles_counts"
   end
 
-  add_index "bibliome_subjects", ["bibliome_id", "subject_id", "year"], :name => "index_bibliome_subjects_on_bibliome_id_and_subject_id_and_year"
-  add_index "bibliome_subjects", ["bibliome_id", "year", "articles_count"], :name => "index_bibliome_subjects_on_bibliome_id_year_articles_count"
+  add_index "bibliome_subjects", ["bibliome_id", "subject_id", "all_articles_count"], :name => "index_bibliome_subjects_on_bibliome_subject_all_articles_count"
+  add_index "bibliome_subjects", ["bibliome_id", "subject_id", "five_articles_count"], :name => "index_bibliome_subjects_on_bibliome_subject_five_articles_count"
+  add_index "bibliome_subjects", ["bibliome_id", "subject_id", "one_articles_count"], :name => "index_bibliome_subjects_on_bibliome_subject_one_articles_count"
+  add_index "bibliome_subjects", ["bibliome_id", "subject_id", "ten_articles_count"], :name => "index_bibliome_subjects_on_bibliome_subject_ten_articles_count"
 
   create_table "bibliomes", :force => true do |t|
     t.string   "name"
@@ -221,28 +301,45 @@ ActiveRecord::Schema.define(:version => 20100423043532) do
     t.integer "bibliome_id"
     t.integer "author_id"
     t.integer "coauthor_id"
-    t.string  "year"
-    t.integer "first",       :default => 0
-    t.integer "last",        :default => 0
-    t.integer "middle",      :default => 0
-    t.integer "total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "coauthorships", ["bibliome_id", "author_id", "year", "coauthor_id"], :name => "index_coauthorships_on_bibliome_id_author_id_year_coauthor_id"
-  add_index "coauthorships", ["bibliome_id", "author_id", "year", "total"], :name => "index_coauthorships_on_bibliome_id_author_id_year_total"
+  add_index "coauthorships", ["bibliome_id", "author_id", "all_articles_count"], :name => "index_coauthorships_on_bibliome_author_all_articles_count"
+  add_index "coauthorships", ["bibliome_id", "author_id", "five_articles_count"], :name => "index_coauthorships_on_bibliome_author_five_articles_count"
+  add_index "coauthorships", ["bibliome_id", "author_id", "one_articles_count"], :name => "index_coauthorships_on_bibliome_author_one_articles_count"
+  add_index "coauthorships", ["bibliome_id", "author_id", "ten_articles_count"], :name => "index_coauthorships_on_bibliome_author_ten_articles_count"
+  add_index "coauthorships", ["bibliome_id", "coauthor_id", "all_articles_count"], :name => "index_coauthorships_on_bibliome_coauthor_all_articles_count"
+  add_index "coauthorships", ["bibliome_id", "coauthor_id", "five_articles_count"], :name => "index_coauthorships_on_bibliome_coauthor_five_articles_count"
+  add_index "coauthorships", ["bibliome_id", "coauthor_id", "one_articles_count"], :name => "index_coauthorships_on_bibliome_coauthor_one_articles_count"
+  add_index "coauthorships", ["bibliome_id", "coauthor_id", "ten_articles_count"], :name => "index_coauthorships_on_bibliome_coauthor_ten_articles_count"
 
   create_table "cosubjectships", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "subject_id"
     t.integer "cosubject_id"
-    t.string  "year"
-    t.integer "direct",       :default => 0
-    t.integer "descendant",   :default => 0
-    t.integer "total",        :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "cosubjectships", ["bibliome_id", "subject_id", "year", "cosubject_id"], :name => "index_cosubjectships_on_bibliome_subject_year_cosubject"
-  add_index "cosubjectships", ["bibliome_id", "subject_id", "year", "direct"], :name => "index_cosubjectships_on_bibliome_subject_year_direct"
+  add_index "cosubjectships", ["bibliome_id", "cosubject_id", "all_articles_count"], :name => "index_cosubjectships_on_bibliome_cosubject_all_articles_count"
+  add_index "cosubjectships", ["bibliome_id", "cosubject_id", "five_articles_count"], :name => "index_cosubjectships_on_bibliome_cosubject_five_articles_count"
+  add_index "cosubjectships", ["bibliome_id", "cosubject_id", "one_articles_count"], :name => "index_cosubjectships_on_bibliome_cosubject_one_articles_count"
+  add_index "cosubjectships", ["bibliome_id", "cosubject_id", "ten_articles_count"], :name => "index_cosubjectships_on_bibliome_cosubject_ten_articles_count"
+  add_index "cosubjectships", ["bibliome_id", "subject_id", "all_articles_count"], :name => "index_cosubjectships_on_bibliome_subject_all_articles_count"
+  add_index "cosubjectships", ["bibliome_id", "subject_id", "five_articles_count"], :name => "index_cosubjectships_on_bibliome_subject_five_articles_count"
+  add_index "cosubjectships", ["bibliome_id", "subject_id", "one_articles_count"], :name => "index_cosubjectships_on_bibliome_subject_one_articles_count"
+  add_index "cosubjectships", ["bibliome_id", "subject_id", "ten_articles_count"], :name => "index_cosubjectships_on_bibliome_subject_ten_articles_count"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -266,43 +363,86 @@ ActiveRecord::Schema.define(:version => 20100423043532) do
 
   add_index "genes", ["symbol"], :name => "index_genes_on_symbol"
 
+  create_table "graphs", :force => true do |t|
+    t.integer "bibliome_id"
+    t.integer "source_id"
+    t.string  "source_type"
+    t.integer "target_id"
+    t.string  "target_type"
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
+  end
+
   create_table "journal_genes", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "journal_id"
     t.integer "gene_id"
-    t.string  "year"
-    t.integer "total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "journal_genes", ["bibliome_id", "gene_id", "year", "total"], :name => "index_journal_genes_on_bibliome_id_gene_id_year_total"
-  add_index "journal_genes", ["bibliome_id", "journal_id", "year", "gene_id"], :name => "index_journal_genes_on_bibliome_journal_year_gene"
-  add_index "journal_genes", ["bibliome_id", "journal_id", "year", "total"], :name => "index_journal_genes_on_bibliome_id_journal_id_year_total"
+  add_index "journal_genes", ["bibliome_id", "gene_id", "all_articles_count"], :name => "index_journal_genes_on_bibliome_gene_all_articles_count"
+  add_index "journal_genes", ["bibliome_id", "gene_id", "five_articles_count"], :name => "index_journal_genes_on_bibliome_gene_five_articles_count"
+  add_index "journal_genes", ["bibliome_id", "gene_id", "one_articles_count"], :name => "index_journal_genes_on_bibliome_gene_one_articles_count"
+  add_index "journal_genes", ["bibliome_id", "gene_id", "ten_articles_count"], :name => "index_journal_genes_on_bibliome_gene_ten_articles_count"
+  add_index "journal_genes", ["bibliome_id", "journal_id", "all_articles_count"], :name => "index_journal_genes_on_bibliome_journal_all_articles_count"
+  add_index "journal_genes", ["bibliome_id", "journal_id", "five_articles_count"], :name => "index_journal_genes_on_bibliome_journal_five_articles_count"
+  add_index "journal_genes", ["bibliome_id", "journal_id", "one_articles_count"], :name => "index_journal_genes_on_bibliome_journal_one_articles_count"
+  add_index "journal_genes", ["bibliome_id", "journal_id", "ten_articles_count"], :name => "index_journal_genes_on_bibliome_journal_ten_articles_count"
 
   create_table "journal_pubtypes", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "journal_id"
     t.integer "pubtype_id"
-    t.string  "year"
-    t.integer "total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "journal_pubtypes", ["bibliome_id", "journal_id", "year", "pubtype_id"], :name => "index_journal_pubtypes_on_bibliome_journal_year_pubtype"
-  add_index "journal_pubtypes", ["bibliome_id", "journal_id", "year", "total"], :name => "index_journal_pubtypes_on_bibliome_id_journal_id_year_total"
-  add_index "journal_pubtypes", ["bibliome_id", "pubtype_id", "year", "total"], :name => "index_journal_pubtypes_on_bibliome_id_pubtype_id_year_total"
+  add_index "journal_pubtypes", ["bibliome_id", "journal_id", "all_articles_count"], :name => "index_journal_pubtypes_on_bibliome_journal_all_articles_count"
+  add_index "journal_pubtypes", ["bibliome_id", "journal_id", "five_articles_count"], :name => "index_journal_pubtypes_on_bibliome_journal_five_articles_count"
+  add_index "journal_pubtypes", ["bibliome_id", "journal_id", "one_articles_count"], :name => "index_journal_pubtypes_on_bibliome_journal_one_articles_count"
+  add_index "journal_pubtypes", ["bibliome_id", "journal_id", "ten_articles_count"], :name => "index_journal_pubtypes_on_bibliome_journal_ten_articles_count"
+  add_index "journal_pubtypes", ["bibliome_id", "pubtype_id", "all_articles_count"], :name => "index_journal_pubtypes_on_bibliome_pubtype_all_articles_count"
+  add_index "journal_pubtypes", ["bibliome_id", "pubtype_id", "five_articles_count"], :name => "index_journal_pubtypes_on_bibliome_pubtype_five_articles_count"
+  add_index "journal_pubtypes", ["bibliome_id", "pubtype_id", "one_articles_count"], :name => "index_journal_pubtypes_on_bibliome_pubtype_one_articles_count"
+  add_index "journal_pubtypes", ["bibliome_id", "pubtype_id", "ten_articles_count"], :name => "index_journal_pubtypes_on_bibliome_pubtype_ten_articles_count"
 
   create_table "journal_subjects", :force => true do |t|
     t.integer "bibliome_id"
     t.integer "journal_id"
     t.integer "subject_id"
-    t.string  "year"
-    t.integer "direct",      :default => 0
-    t.integer "descendant",  :default => 0
-    t.integer "total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "journal_subjects", ["bibliome_id", "journal_id", "year", "direct"], :name => "index_journal_subjects_on_bibliome_id_journal_id_year_direct"
-  add_index "journal_subjects", ["bibliome_id", "journal_id", "year", "subject_id"], :name => "index_journal_subjects_on_bibliome_journal_year_subject"
-  add_index "journal_subjects", ["bibliome_id", "subject_id", "year", "direct"], :name => "index_journal_subjects_on_bibliome_id_subject_id_year_direct"
+  add_index "journal_subjects", ["bibliome_id", "journal_id", "all_articles_count"], :name => "index_journal_subjects_on_bibliome_journal_all_articles_count"
+  add_index "journal_subjects", ["bibliome_id", "journal_id", "five_articles_count"], :name => "index_journal_subjects_on_bibliome_journal_five_articles_count"
+  add_index "journal_subjects", ["bibliome_id", "journal_id", "one_articles_count"], :name => "index_journal_subjects_on_bibliome_journal_one_articles_count"
+  add_index "journal_subjects", ["bibliome_id", "journal_id", "ten_articles_count"], :name => "index_journal_subjects_on_bibliome_journal_ten_articles_count"
+  add_index "journal_subjects", ["bibliome_id", "subject_id", "all_articles_count"], :name => "index_journal_subjects_on_bibliome_subject_all_articles_count"
+  add_index "journal_subjects", ["bibliome_id", "subject_id", "five_articles_count"], :name => "index_journal_subjects_on_bibliome_subject_five_articles_count"
+  add_index "journal_subjects", ["bibliome_id", "subject_id", "one_articles_count"], :name => "index_journal_subjects_on_bibliome_subject_one_articles_count"
+  add_index "journal_subjects", ["bibliome_id", "subject_id", "ten_articles_count"], :name => "index_journal_subjects_on_bibliome_subject_ten_articles_count"
 
   create_table "journals", :force => true do |t|
     t.string "title"
@@ -345,15 +485,23 @@ ActiveRecord::Schema.define(:version => 20100423043532) do
     t.integer "bibliome_id"
     t.integer "subject_id"
     t.integer "gene_id"
-    t.string  "year"
-    t.integer "direct",      :default => 0
-    t.integer "descendant",  :default => 0
-    t.integer "total",       :default => 0
+    t.integer "all_articles_count",  :limit => 3, :default => 0
+    t.integer "one_articles_count",  :limit => 3, :default => 0
+    t.integer "five_articles_count", :limit => 3, :default => 0
+    t.integer "ten_articles_count",  :limit => 3, :default => 0
+    t.integer "start_year",          :limit => 2, :default => 0
+    t.integer "end_year",            :limit => 2, :default => 0
+    t.text    "articles_counts"
   end
 
-  add_index "subject_genes", ["bibliome_id", "gene_id", "year", "direct"], :name => "index_subject_genes_on_bibliome_id_gene_id_year_direct"
-  add_index "subject_genes", ["bibliome_id", "gene_id", "year", "subject_id"], :name => "index_subject_genes_on_bibliome_gene_year_subject"
-  add_index "subject_genes", ["bibliome_id", "subject_id", "year", "direct"], :name => "index_subject_genes_on_bibliome_id_subject_id_year_direct"
+  add_index "subject_genes", ["bibliome_id", "gene_id", "all_articles_count"], :name => "index_subject_genes_on_bibliome_gene_all_articles_count"
+  add_index "subject_genes", ["bibliome_id", "gene_id", "five_articles_count"], :name => "index_subject_genes_on_bibliome_gene_five_articles_count"
+  add_index "subject_genes", ["bibliome_id", "gene_id", "one_articles_count"], :name => "index_subject_genes_on_bibliome_gene_one_articles_count"
+  add_index "subject_genes", ["bibliome_id", "gene_id", "ten_articles_count"], :name => "index_subject_genes_on_bibliome_gene_ten_articles_count"
+  add_index "subject_genes", ["bibliome_id", "subject_id", "all_articles_count"], :name => "index_subject_genes_on_bibliome_subject_all_articles_count"
+  add_index "subject_genes", ["bibliome_id", "subject_id", "five_articles_count"], :name => "index_subject_genes_on_bibliome_subject_five_articles_count"
+  add_index "subject_genes", ["bibliome_id", "subject_id", "one_articles_count"], :name => "index_subject_genes_on_bibliome_subject_one_articles_count"
+  add_index "subject_genes", ["bibliome_id", "subject_id", "ten_articles_count"], :name => "index_subject_genes_on_bibliome_subject_ten_articles_count"
 
   create_table "subjects", :force => true do |t|
     t.string "term"

@@ -4,23 +4,22 @@ class CreateAuthorSubjects < ActiveRecord::Migration
       t.integer :bibliome_id
       t.integer :author_id
       t.integer :subject_id
-      t.string :year
-      t.integer :first_direct, :default => 0
-      t.integer :first_descendant, :default => 0
-      t.integer :first_total, :default => 0
-      t.integer :last_direct, :default => 0
-      t.integer :last_descendant, :default => 0
-      t.integer :last_total, :default => 0
-      t.integer :middle_direct, :default => 0
-      t.integer :middle_descendant, :default => 0
-      t.integer :middle_total, :default => 0
-      t.integer :total_direct, :default => 0
-      t.integer :total_descendant, :default => 0
-      t.integer :total_total, :default => 0
+      t.integer :all_articles_count,  :default => 0,  :limit => 3
+      t.integer :one_articles_count,  :default => 0,  :limit => 3
+      t.integer :five_articles_count, :default => 0,  :limit => 3
+      t.integer :ten_articles_count,  :default => 0,  :limit => 3
+      t.integer :start_year,          :default => 0,  :limit => 2
+      t.integer :end_year,            :default => 0,  :limit => 2
+      t.text    :articles_counts
     end
-    add_index :author_subjects, [:bibliome_id, :author_id, :year, :subject_id], :name => 'index_author_subjects_on_bibliome_id_author_id_year_subject_id'
-    add_index :author_subjects, [:bibliome_id, :subject_id, :year, :total_direct], :name => 'index_author_subjects_on_bibliome_subject_year_total_direct'
-    add_index :author_subjects, [:bibliome_id, :author_id, :year, :total_direct], :name => 'index_author_subjects_on_bibliome_author_year_total_direct'
+    add_index :author_subjects, [:bibliome_id, :subject_id, :all_articles_count], :name => 'index_author_subjects_on_bibliome_subject_all_articles_count'
+    add_index :author_subjects, [:bibliome_id, :subject_id, :one_articles_count], :name => 'index_author_subjects_on_bibliome_subject_one_articles_count'
+    add_index :author_subjects, [:bibliome_id, :subject_id, :five_articles_count], :name => 'index_author_subjects_on_bibliome_subject_five_articles_count'
+    add_index :author_subjects, [:bibliome_id, :subject_id, :ten_articles_count], :name => 'index_author_subjects_on_bibliome_subject_ten_articles_count'
+    add_index :author_subjects, [:bibliome_id, :author_id, :all_articles_count], :name => 'index_author_subjects_on_bibliome_author_all_articles_count'
+    add_index :author_subjects, [:bibliome_id, :author_id, :one_articles_count], :name => 'index_author_subjects_on_bibliome_author_one_articles_count'
+    add_index :author_subjects, [:bibliome_id, :author_id, :five_articles_count], :name => 'index_author_subjects_on_bibliome_author_five_articles_count'
+    add_index :author_subjects, [:bibliome_id, :author_id, :ten_articles_count], :name => 'index_author_subjects_on_bibliome_author_ten_articles_count'
   end
 
   def self.down

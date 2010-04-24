@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bibliome_id: 1
+  source: 
+  target: 
+  all_articles_count: 1
+  one_articles_count: 1
+  five_articles_count: 1
+  ten_articles_count: 1
+  start_year: 1
+  end_year: 1
+  articles_counts: MyText
+
+two:
+  bibliome_id: 1
+  source: 
+  target: 
+  all_articles_count: 1
+  one_articles_count: 1
+  five_articles_count: 1
+  ten_articles_count: 1
+  start_year: 1
+  end_year: 1
+  articles_counts: MyText
